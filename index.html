@@ -696,23 +696,18 @@ select.form-input { appearance: auto; }
     </div>
 
     <!-- Section 5: Photos & Links -->
-    <div class="form-section">
-      <div class="form-section-header"><div class="form-section-num">5</div><h3>写真・リンク</h3></div>
-      <div class="form-field">
-        <label>ウェブサイトおよびSNSのURL</label>
-        <input type="url" id="websiteUrl" class="form-input" placeholder="https://...">
-      </div>
-      <div class="form-field">
-        <label>店舗関連の画像</label>
-        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-          <div class="upload-title">写真をアップロード</div>
-          <p class="upload-hint">JPG, PNG（最大6枚・自動圧縮）</p>
-        </div>
-        <input type="file" id="fileInput" multiple accept="image/*" style="display:none" onchange="handleFiles(this)">
-        <div class="upload-preview" id="uploadPreview"></div>
-        <p class="upload-status" id="uploadStatus"></p>
-        <p class="upload-note">以下の資料をご提供いただけると、韓国人旅行者により正確な情報を提供できます。<br>メニュー表 / 店舗の外観・内装の写真 / サービスの写真 / 店舗ロゴ</p>
-      </div>
+   <div class="form-field">
+  <label>店舗関連の画像（LINE送付）</label>
+  <div class="upload-area" onclick="window.open(LINE_URL, '_blank')">
+    <div class="upload-title">画像はLINEで送ってください</div>
+    <p class="upload-hint">フォーム送信後、店舗名を書いて写真を送信</p>
+  </div>
+  <input type="file" id="fileInput" multiple accept="image/*" style="display:none" onchange="handleFiles(this)">
+  <div class="upload-preview" id="uploadPreview"></div>
+  <p class="upload-status" id="uploadStatus"></p>
+  <p class="upload-note">画像はフォーム内アップロードではなく、送信完了後にLINEで受け付けます。</p>
+</div>
+
     </div>
 
     <!-- Section 6: Utility Information -->
@@ -800,16 +795,70 @@ select.form-input { appearance: auto; }
 </div>
 
 <script>
+var GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwaiDpnuDHVtv2IRjEbQj82l0UDF3ohVqVeEJKa1ndw2N6S2w6uUg5zQeaCjL_taBwV/exec';
+
+(function initGoogleScriptRunShim() {
+  try {
+    if (window.google && google.script && google.script.run &&
+        typeof google.script.run.withSuccessHandler === 'function') {
+      return;
+    }
+  } catch (e) {}
+
+  window.google = window.google || {};
+  google.script = google.script || {};
+
+  function callApi(action, payload) {
+    return fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: action, payload: payload }),
+      redirect: 'follow'
+    }).then(function(res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    }).then(function(text) {
+      return JSON.parse(text);
+    });
+  }
+
+  function createRunner() {
+    var onSuccess = function(){};
+    var onFailure = function(){};
+
+    return {
+      withSuccessHandler: function(fn) {
+        onSuccess = fn || function(){};
+        return this;
+      },
+      withFailureHandler: function(fn) {
+        onFailure = fn || function(){};
+        return this;
+      },
+      submitForm: function(payload) {
+        callApi('submitForm', payload).then(onSuccess).catch(onFailure);
+      },
+      uploadSubmissionImage: function(payload) {
+        callApi('uploadSubmissionImage', payload).then(onSuccess).catch(onFailure);
+      }
+    };
+  }
+
+  Object.defineProperty(google.script, 'run', {
+    get: function() {
+      return createRunner();
+    }
+  });
+})();
+
 // ====== STATE ======
 var scheduleType = 'daily';
 var holidays = [];
 var targets = [];
-var uploadedFiles = []; // { name, type, data (base64) }
+var uploadedFiles = [];
 var agreed = false;
 var submitting = false;
 var submitWatchdogTimer = null;
-var postSubmitUploading = false;
-var postUploadSession = null;
 
 var LINE_URL = 'https://line.me/R/ti/p/@864mbroc';
 var DAYS = ['月','火','水','木','金','土','日'];
@@ -823,10 +872,6 @@ var BENEFIT_TYPES = ['discount', 'drink', 'side', 'sizeUp'];
 var DRAFT_KEY = 'flying_pass_partner_form_draft_v1';
 var autosaveBound = false;
 var saveTimer = null;
-var MAX_UPLOAD_COUNT = 6;
-var MAX_IMAGE_SIDE = 1600;
-var IMAGE_QUALITY = 0.82;
-var MAX_IMAGE_BYTES = 1200 * 1024;
 var UTILITY_CHECK_IDS = [
   'utilPayCredit','utilPayPaypay','utilPayAlipay','utilPayCash',
   'utilLangKoMenu','utilLangEnMenu','utilLangKoStaff',
@@ -860,7 +905,7 @@ function showSuccess() {
   document.getElementById('formPage').classList.add('hidden');
   document.getElementById('successPage').classList.remove('hidden');
   window.scrollTo(0,0);
-  // Countdown
+
   var count = 5;
   var el = document.getElementById('countdown');
   el.textContent = count + '秒後に自動でLINE画面が開きます...';
@@ -886,10 +931,9 @@ function setPostUploadStatus(text, isError) {
 function setRetryUploadButton(show, label) {
   var btn = document.getElementById('retryUploadBtn');
   if (!btn) return;
-  btn.textContent = label || '失敗した画像を再アップロード';
+  btn.textContent = label || 'LINEを開く';
   btn.className = 'post-upload-retry' + (show ? '' : ' hidden');
 }
-
 
 // ====== TIME OPTIONS ======
 function buildTimeOptions() {
@@ -1069,115 +1113,14 @@ function toggleTarget(id) {
   queueSaveDraft();
 }
 
-// ====== FILE UPLOAD ======
+// ====== FILE UPLOAD (LINE 안내용으로 비활성화) ======
 function handleFiles(input) {
-  var files = Array.prototype.slice.call(input.files || []);
-  if (!files.length) return;
-
-  var remain = MAX_UPLOAD_COUNT - uploadedFiles.length;
-  if (remain <= 0) {
-    alert('画像は最大' + MAX_UPLOAD_COUNT + '枚までです。');
-    input.value = '';
-    return;
-  }
-  if (files.length > remain) {
-    alert('画像は最大' + MAX_UPLOAD_COUNT + '枚までです。先頭' + remain + '枚のみ追加します。');
-    files = files.slice(0, remain);
-  }
-
-  var statusEl = document.getElementById('uploadStatus');
-  var index = 0;
-
-  function next() {
-    if (index >= files.length) {
-      renderPreviews();
-      updateUploadStatus();
-      queueSaveDraft();
-      input.value = '';
-      return;
-    }
-
-    var file = files[index++];
-    if (!file.type || file.type.indexOf('image/') !== 0) {
-      next();
-      return;
-    }
-
-    if (statusEl) statusEl.textContent = '画像を最適化中... (' + index + '/' + files.length + ')';
-
-    compressImageFile(file)
-      .then(function(comp) {
-        uploadedFiles.push(comp);
-      })
-      .catch(function() {
-        alert(file.name + ' の処理に失敗しました。');
-      })
-      .finally(next);
-  }
-
-  next();
-}
-
-function readFileAsDataURL(file) {
-  return new Promise(function(resolve, reject) {
-    var reader = new FileReader();
-    reader.onload = function(e) { resolve(e.target.result); };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-
-function loadImageFromUrl(url) {
-  return new Promise(function(resolve, reject) {
-    var img = new Image();
-    img.onload = function() { resolve(img); };
-    img.onerror = reject;
-    img.src = url;
-  });
-}
-
-function compressImageFile(file) {
-  return readFileAsDataURL(file).then(function(url) {
-    return loadImageFromUrl(url);
-  }).then(function(img) {
-    var w = img.naturalWidth || img.width;
-    var h = img.naturalHeight || img.height;
-    var ratio = Math.min(1, MAX_IMAGE_SIDE / Math.max(w, h));
-    var tw = Math.max(1, Math.round(w * ratio));
-    var th = Math.max(1, Math.round(h * ratio));
-
-    var canvas = document.createElement('canvas');
-    canvas.width = tw;
-    canvas.height = th;
-    var ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0, tw, th);
-
-    var quality = IMAGE_QUALITY;
-    var output = canvas.toDataURL('image/jpeg', quality);
-    var base64 = output.split(',')[1];
-    while ((base64.length * 3 / 4) > MAX_IMAGE_BYTES && quality > 0.5) {
-      quality -= 0.1;
-      output = canvas.toDataURL('image/jpeg', quality);
-      base64 = output.split(',')[1];
-    }
-
-    return {
-      name: file.name.replace(/\.[^.]+$/, '') + '.jpg',
-      type: 'image/jpeg',
-      data: base64
-    };
-  });
+  alert('画像はフォーム送信後、LINEで送ってください。（店舗名を必ず記載）');
+  input.value = '';
 }
 
 function renderPreviews() {
-  var html = '';
-  uploadedFiles.forEach(function(f, idx){
-    html += '<div class="upload-item">';
-    html += '<img class="upload-thumb" src="data:'+f.type+';base64,'+f.data+'">';
-    html += '<button class="upload-remove" onclick="removeFile('+idx+')">×</button>';
-    html += '</div>';
-  });
-  document.getElementById('uploadPreview').innerHTML = html;
+  document.getElementById('uploadPreview').innerHTML = '';
   updateUploadStatus();
 }
 
@@ -1190,10 +1133,7 @@ function removeFile(idx) {
 function updateUploadStatus() {
   var statusEl = document.getElementById('uploadStatus');
   if (!statusEl) return;
-  var totalBytes = uploadedFiles.reduce(function(acc, f) {
-    return acc + Math.floor((f.data || '').length * 3 / 4);
-  }, 0);
-  statusEl.textContent = uploadedFiles.length + '/' + MAX_UPLOAD_COUNT + ' 枚, 約 ' + Math.round(totalBytes / 1024) + 'KB';
+  statusEl.textContent = '画像はフォーム送信後、LINEで送付してください（店舗名記載）';
 }
 
 // ====== POSTAL LOOKUP ======
@@ -1227,7 +1167,7 @@ function lookupPostalCode() {
       postalEl.value = code;
       queueSaveDraft();
     })
-    .catch(function(err){
+    .catch(function(){
       alert('住所検索に失敗しました。郵便番号をご確認ください。');
     })
     .finally(function(){
@@ -1348,8 +1288,7 @@ function saveDraft() {
   try {
     var data = collectDraft();
     localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
-  } catch (e) {
-  }
+  } catch (e) {}
 }
 
 function restoreDraft() {
@@ -1405,15 +1344,13 @@ function restoreDraft() {
     });
     syncCheckChipStates();
     syncAgree();
-  } catch (e) {
-  }
+  } catch (e) {}
 }
 
 function clearDraft() {
   try {
     localStorage.removeItem(DRAFT_KEY);
-  } catch (e) {
-  }
+  } catch (e) {}
 }
 
 // ====== BUILD FORM DATA ======
@@ -1458,7 +1395,6 @@ function getHolidays() {
 function handleSubmit() {
   if(!agreed || submitting) return;
 
-  // 필수 입력 체크
   var required = ['companyName','contactName','contactInfo','email','category','area','address','googleMapsUrl','minAmount','storeIntro'];
   for(var i=0; i<required.length; i++){
     var val = document.getElementById(required[i]).value.trim();
@@ -1485,18 +1421,16 @@ function handleSubmit() {
     btn.innerHTML = '登録する';
     btn.className = 'submit-btn ready';
     var timeoutErr = document.getElementById('submitError');
-    timeoutErr.textContent = '送信に時間がかかっています。画像枚数を減らして再試行してください。';
+    timeoutErr.textContent = '送信に時間がかかっています。通信環境をご確認のうえ再試行してください。';
     timeoutErr.classList.remove('hidden');
-  }, 65000);
+  }, 120000);
 
-  // 메뉴
   var menus = [
     document.getElementById('menu1').value,
     document.getElementById('menu2').value,
     document.getElementById('menu3').value
   ].filter(function(m){ return m.trim(); }).join(' / ');
 
-  // 타겟
   var targetLabels = targets.map(function(id){
     var t = TARGET_OPTIONS.find(function(o){ return o.id === id; });
     return t ? t.label : id;
@@ -1545,28 +1479,20 @@ function handleSubmit() {
     ]),
     images: []
   };
-  var deferredImages = uploadedFiles.slice();
 
   google.script.run
     .withSuccessHandler(function(result){
       clearTimeout(submitWatchdogTimer);
       submitting = false;
+
       if(result && result.success) {
+        var storeName = (formData.companyName || '').trim() || '未入力';
         clearDraft();
+        uploadedFiles = [];
+        renderPreviews();
         showSuccess();
-        if (deferredImages.length && result.submissionId) {
-          postUploadSession = {
-            submissionId: result.submissionId,
-            companyName: formData.companyName,
-            images: deferredImages.slice(),
-            folderId: '',
-            failedIndices: []
-          };
-          uploadImagesDeferred(result.submissionId, formData.companyName, deferredImages);
-        } else {
-          setPostUploadStatus('');
-          setRetryUploadButton(false);
-        }
+        setPostUploadStatus('画像はLINEで送ってください（店舗名: ' + storeName + '）');
+        setRetryUploadButton(true, 'LINEを開く');
       } else {
         btn.innerHTML = '登録する';
         btn.className = 'submit-btn ready';
@@ -1575,7 +1501,7 @@ function handleSubmit() {
         errEl.classList.remove('hidden');
       }
     })
-    .withFailureHandler(function(error){
+    .withFailureHandler(function(){
       clearTimeout(submitWatchdogTimer);
       submitting = false;
       btn.innerHTML = '登録する';
@@ -1587,130 +1513,8 @@ function handleSubmit() {
     .submitForm(formData);
 }
 
-function uploadImagesDeferred(submissionId, companyName, images) {
-  if (!images || !images.length || postSubmitUploading) return;
-  postSubmitUploading = true;
-  setRetryUploadButton(false);
-  var failed = [];
-  var queue = images.map(function(_, idx){ return idx; });
-
-  function uploadOne(originalIdx, done) {
-    var retryCount = 0;
-    function send() {
-      google.script.run
-        .withSuccessHandler(function(res){
-          if (res && res.success) {
-            if (postUploadSession) postUploadSession.folderId = res.folderId || postUploadSession.folderId;
-            done(true);
-            return;
-          }
-          if (retryCount < 1) {
-            retryCount++;
-            send();
-            return;
-          }
-          done(false);
-        })
-        .withFailureHandler(function(){
-          if (retryCount < 1) {
-            retryCount++;
-            send();
-            return;
-          }
-          done(false);
-        })
-        .uploadSubmissionImage({
-          submissionId: submissionId,
-          companyName: companyName,
-          folderId: (postUploadSession && postUploadSession.folderId) || '',
-          imageOrder: originalIdx + 1,
-          image: images[originalIdx]
-        });
-    }
-    send();
-  }
-
-  function uploadNext() {
-    if (!queue.length) {
-      postSubmitUploading = false;
-      if (postUploadSession) postUploadSession.failedIndices = failed.slice();
-      var okCount = images.length - failed.length;
-      if (!failed.length) {
-        setPostUploadStatus('画像アップロード完了 (' + okCount + '/' + images.length + ')');
-        setRetryUploadButton(false);
-      } else {
-        setPostUploadStatus('画像アップロード一部失敗 (' + okCount + '/' + images.length + ')');
-        setRetryUploadButton(true, '失敗した画像を再アップロード (' + failed.length + '件)');
-      }
-      return;
-    }
-
-    var originalIdx = queue.shift();
-    var sentCount = images.length - queue.length;
-    setPostUploadStatus('画像アップロード中... (' + sentCount + '/' + images.length + ')');
-
-    uploadOne(originalIdx, function(ok){
-      if (!ok) failed.push(originalIdx);
-      uploadNext();
-    });
-  }
-
-  uploadNext();
-}
-
 function retryFailedUploads() {
-  if (!postUploadSession || !postUploadSession.failedIndices || !postUploadSession.failedIndices.length) return;
-  if (postSubmitUploading) return;
-
-  var retryIndices = postUploadSession.failedIndices.slice();
-  var sessionImages = postUploadSession.images;
-  var total = retryIndices.length;
-  postSubmitUploading = true;
-  setRetryUploadButton(false);
-
-  function nextRetry() {
-    if (!retryIndices.length) {
-      postSubmitUploading = false;
-      setPostUploadStatus('失敗画像の再アップロード完了');
-      postUploadSession.failedIndices = [];
-      setRetryUploadButton(false);
-      return;
-    }
-
-    var originalIdx = retryIndices.shift();
-    var done = total - retryIndices.length;
-    setPostUploadStatus('失敗画像を再アップロード中... (' + done + '/' + total + ')');
-
-    google.script.run
-      .withSuccessHandler(function(res){
-        if (res && res.success) {
-          postUploadSession.folderId = res.folderId || postUploadSession.folderId;
-          nextRetry();
-          return;
-        }
-        retryIndices.push(originalIdx);
-        postSubmitUploading = false;
-        postUploadSession.failedIndices = retryIndices.slice();
-        setPostUploadStatus('再アップロードに失敗しました。時間をおいて再試行してください。', true);
-        setRetryUploadButton(true, '失敗した画像を再アップロード (' + retryIndices.length + '件)');
-      })
-      .withFailureHandler(function(){
-        retryIndices.push(originalIdx);
-        postSubmitUploading = false;
-        postUploadSession.failedIndices = retryIndices.slice();
-        setPostUploadStatus('再アップロードに失敗しました。時間をおいて再試行してください。', true);
-        setRetryUploadButton(true, '失敗した画像を再アップロード (' + retryIndices.length + '件)');
-      })
-      .uploadSubmissionImage({
-        submissionId: postUploadSession.submissionId,
-        companyName: postUploadSession.companyName,
-        folderId: postUploadSession.folderId || '',
-        imageOrder: originalIdx + 1,
-        image: sessionImages[originalIdx]
-      });
-  }
-
-  nextRetry();
+  window.open(LINE_URL, '_blank');
 }
 
 function syncCheckChipStates() {
@@ -1731,7 +1535,4 @@ function collectCheckedLabels(items) {
   }).join(' / ');
 }
 </script>
-</body>
-</html>
-
 
