@@ -8,255 +8,216 @@
 <link rel="dns-prefetch" href="//lh3.googleusercontent.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Noto Sans JP', sans-serif; background: #FAFBFC; color: #0F172A; }
-a { color: inherit; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans JP',sans-serif;background:#FAFBFC;color:#0F172A}
+a{color:inherit}
 
-.nav {
-  background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  position: sticky; top: 0; z-index: 100; padding: 14px 24px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.nav-logo { display: flex; align-items: center; gap: 10px; }
-.nav-logo-img { height: 30px; width: auto; max-width: 220px; object-fit: contain; display: block; }
-.nav-btn {
-  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
-  color: white; border: 2px solid #FCA5A5; padding: 11px 22px;
-  border-radius: 12px; font-weight: 900; font-size: 13px; cursor: pointer;
-  font-family: 'Noto Sans JP', sans-serif;
-}
-.nav-back {
-  background: none; border: none; font-size: 14px; color: #64748B; cursor: pointer;
-  font-weight: 600; font-family: 'Noto Sans JP', sans-serif;
-}
-.banner { background: #DC2626; color: white; text-align: center; padding: 10px 16px; font-size: 13px; font-weight: 700; }
+/* Nav */
+.nav{background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.06);position:sticky;top:0;z-index:100;padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-img{height:30px;width:auto;max-width:220px;display:block;object-fit:contain}
+.nav-btn{background:linear-gradient(135deg,#DC2626 0%,#B91C1C 100%);color:#fff;border:2px solid #FCA5A5;padding:11px 22px;border-radius:12px;font-weight:900;font-size:13px;cursor:pointer;font-family:'Noto Sans JP',sans-serif}
+.nav-back{background:none;border:none;font-size:14px;color:#64748B;cursor:pointer;font-weight:600;font-family:'Noto Sans JP',sans-serif}
 
-.hero { background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%); color: white; padding: 60px 24px; text-align: center; }
-.hero h1 { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.4; margin-bottom: 14px; }
-.hero p { font-size: 14px; opacity: 0.85; line-height: 1.9; max-width: 680px; margin: 0 auto; }
+/* Top */
+.banner{background:#DC2626;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700}
+.hero{background:linear-gradient(135deg,#0F172A 0%,#1E3A5F 100%);color:#fff;padding:60px 24px;text-align:center}
+.hero-badge{display:inline-block;background:rgba(245,158,11,.15);color:#F59E0B;padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:20px;border:1px solid rgba(245,158,11,.3)}
+.hero h1{font-size:clamp(22px,5vw,34px);font-weight:900;line-height:1.4;margin-bottom:16px}
+.hero h1 span{color:#F59E0B}
+.hero p{font-size:14px;opacity:.88;line-height:1.9;max-width:600px;margin:0 auto}
 
-.container { max-width: 760px; margin: 0 auto; padding: 28px 20px; }
-.info-card { background: white; border-radius: 14px; padding: 20px; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); line-height: 1.9; color: #334155; }
-.cta-box {
-  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
-  border-radius: 16px; padding: 30px 24px; text-align: center; color: white; margin-top: 20px;
-}
-.cta-btn {
-  background: white; color: #B91C1C; border: 2px solid #FCA5A5; padding: 14px 34px;
-  border-radius: 12px; font-weight: 900; font-size: 16px; cursor: pointer; margin-top: 14px;
-}
+.container{max-width:760px;margin:0 auto;padding:32px 20px 0}
+.form-container{max-width:640px;margin:0 auto;padding:0 20px 60px}
 
-.footer { background: #0F172A; color: #94A3B8; padding: 24px; text-align: center; font-size: 12px; }
-.partner-banner { background: #0F172A; border-radius: 16px; padding: 20px; margin-bottom: 14px; color: white; }
-.partner-banner-logo { display: inline-flex; align-items: center; margin-bottom: 14px; overflow: hidden; }
-.partner-banner-logo img { height: 28px; width: auto; max-width: 240px; object-fit: contain; display: block; }
-.partner-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
-.partner-link {
-  display: block; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
-  border-radius: 10px; padding: 10px 12px; font-size: 12px; color: #E2E8F0; text-decoration: none;
-}
+.info-intro,.info-card{background:#fff;border-radius:14px;padding:24px;border:1px solid #E2E8F0;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.info-intro{font-size:14px;line-height:1.9;color:#334155;margin-bottom:32px}
+.info-section{margin-bottom:32px}
+.info-section-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.section-number{background:#DC2626;color:#fff;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;font-family:'Outfit',sans-serif}
+.info-section-header h2{font-size:17px;font-weight:900}
+.info-card{margin-bottom:12px}
+.info-item{font-size:14px;line-height:1.8;color:#334155;margin-bottom:16px}
+.info-item:last-child{margin-bottom:0}
+.info-item-title{font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.info-item-dot{width:6px;height:6px;border-radius:50%;background:#DC2626;flex-shrink:0}
+.info-item-body{padding-left:14px}
 
-.form-hero { background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%); color: white; padding: 36px 24px; text-align: center; }
-.form-hero h2 { font-size: clamp(18px, 4vw, 24px); font-weight: 900; margin-bottom: 8px; }
-.form-hero p { font-size: 13px; opacity: 0.85; }
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:16px}
+.stat-box{background:#fff;border-radius:12px;padding:16px 12px;text-align:center;border:1px solid #E2E8F0}
+.stat-value{font-size:22px;font-weight:900;color:#DC2626;font-family:'Outfit',sans-serif}
+.stat-label{font-size:11px;color:#64748B;margin-top:4px}
 
-.form-container { max-width: 640px; margin: 0 auto; padding: 24px 20px 60px; }
-.form-section {
-  background: white; border-radius: 16px; padding: 24px; margin-bottom: 20px;
-  border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-.form-section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-.form-section-num {
-  background: #DC2626; color: white; width: 28px; height: 28px; border-radius: 7px;
-  display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800;
-  font-family: 'Outfit', sans-serif;
-}
-.form-section-header h3 { font-size: 16px; font-weight: 800; }
+.rank-warning{background:#FEF3C7;border:1px solid #F59E0B;border-radius:10px;padding:16px;margin-bottom:16px}
+.rank-warning-title{font-size:13px;font-weight:700;color:#92400E;margin-bottom:10px}
+.rank-boxes{display:flex;gap:12px;flex-wrap:wrap}
+.rank-box{background:#fff;padding:12px 18px;border-radius:8px;font-size:14px;font-weight:600;flex:1 1 140px;border:1px solid #FDE68A}
+.rank-box small{font-size:12px;color:#64748B;font-weight:400}
 
-.form-field { margin-bottom: 16px; }
-.form-field label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-.form-field .req { color: #DC2626; }
-.form-input {
-  width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid #E2E8F0;
-  font-size: 14px; outline: none; font-family: 'Noto Sans JP', sans-serif; background: white;
-}
-.form-input:focus { border-color: #DC2626; }
-.form-hint { font-size: 11px; color: #94A3B8; margin-top: 4px; }
-.postal-row { display: flex; gap: 8px; align-items: center; }
-.postal-btn {
-  background: #0F172A; color: white; border: none; border-radius: 8px; padding: 10px 14px;
-  font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Noto Sans JP', sans-serif; white-space: nowrap;
-}
-.postal-btn:disabled { background: #CBD5E1; cursor: not-allowed; }
+.staff-guide{display:flex;gap:12px;padding:12px 14px;background:#F8FAFC;border-radius:10px;font-size:13px;line-height:1.7;align-items:flex-start;margin-bottom:10px}
+.staff-guide:last-child{margin-bottom:0}
+.staff-check{background:#DC2626;color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:10px}
 
-.benefit-note {
-  background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px;
-  margin-bottom: 20px; font-size: 13px; color: #334155; line-height: 1.7;
-}
-.min-amount { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.min-amount span { font-size: 14px; font-weight: 600; white-space: nowrap; }
-.benefit-row {
-  display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 10px; margin-bottom: 8px;
-  border: 1px solid #E2E8F0; background: #F8FAFC; flex-wrap: wrap; transition: all 0.2s;
-}
-.benefit-row.active { background: #FEF2F2; border-color: #FECACA; }
-.benefit-label { display: flex; align-items: center; gap: 8px; cursor: pointer; flex: 1 1 auto; min-width: 160px; }
-.benefit-label input { accent-color: #DC2626; width: 18px; height: 18px; }
-.benefit-label span { font-size: 14px; font-weight: 600; color: #475569; }
-.benefit-row.active .benefit-label span { color: #DC2626; }
-.benefit-max { display: flex; align-items: center; gap: 6px; }
-.benefit-max span { font-size: 12px; color: #94A3B8; white-space: nowrap; }
-.benefit-max input {
-  width: 80px; padding: 6px 8px; font-size: 13px; text-align: right;
-  border: 1px solid #E2E8F0; border-radius: 8px; outline: none; font-family: 'Noto Sans JP', sans-serif;
-}
-.benefit-tip {
-  font-size: 13px; color: #DC2626; font-weight: 600; margin-top: 12px;
-  padding: 10px 14px; background: #FEF2F2; border-radius: 8px; line-height: 1.6;
-}
+.line-btn{display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff;padding:14px 28px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(6,199,85,.3)}
+.line-btn-big{padding:16px 32px;font-size:16px;font-weight:800;border-radius:14px;box-shadow:0 6px 24px rgba(6,199,85,.4);width:100%;justify-content:center}
 
-.schedule-toggle { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
-.radio-opt {
-  display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px; cursor: pointer;
-  font-size: 14px; font-weight: 600; border: 2px solid #E2E8F0; background: white; color: #475569;
-}
-.radio-opt.active { border-color: #DC2626; background: #FEF2F2; color: #DC2626; }
-.radio-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #CBD5E1; }
-.radio-opt.active .radio-dot { border: 5px solid #DC2626; }
-.time-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-.time-select {
-  padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 8px;
-  font-size: 14px; font-family: 'Noto Sans JP', sans-serif; outline: none; background: white;
-}
-.time-select-small { padding: 6px 8px; font-size: 13px; width: 90px; }
-.time-label { font-size: 11px; color: #94A3B8; }
-.break-check { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; cursor: pointer; margin-bottom: 8px; }
-.break-check input { accent-color: #DC2626; width: 16px; height: 16px; }
-.break-times { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding-left: 24px; }
+.line-important{background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:16px;margin-bottom:16px}
+.line-important h4{font-size:14px;font-weight:800;color:#DC2626;margin-bottom:8px}
+.line-important p{font-size:13px;color:#334155;line-height:1.8}
 
-.holiday-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-.holiday-btn {
-  padding: 8px 14px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer;
-  border: 1px solid #E2E8F0; background: white; color: #475569; font-family: 'Noto Sans JP', sans-serif;
-}
-.holiday-btn.active { border: 2px solid #DC2626; background: #FEF2F2; color: #DC2626; }
-.holiday-btn.nenkyu.active { border: 2px solid #059669; background: #ECFDF5; color: #059669; }
+.contact-box{background:#F1F5F9;border-radius:14px;padding:24px;margin-top:8px;margin-bottom:24px}
+.contact-row{display:flex;gap:8px;font-size:14px;color:#334155;margin-bottom:8px}
+.contact-label{color:#64748B;min-width:60px}
 
-.weekly-row {
-  display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px; border: 1px solid #E2E8F0;
-  margin-bottom: 8px; flex-wrap: wrap; background: white;
-}
-.weekly-row.closed { background: #F8FAFC; }
-.weekly-day { font-weight: 700; font-size: 14px; width: 24px; }
-.weekly-day.off { color: #94A3B8; }
-.weekly-close-label { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #94A3B8; cursor: pointer; margin-left: auto; }
+.cta-box{background:linear-gradient(135deg,#DC2626 0%,#B91C1C 100%);border-radius:16px;padding:36px 24px;text-align:center;color:#fff;margin-bottom:40px}
+.cta-box h3{font-size:18px;font-weight:900;margin-bottom:10px}
+.cta-box p{font-size:13px;opacity:.9;line-height:1.7;margin-bottom:24px}
+.cta-btn{background:#fff;color:#B91C1C;border:2px solid #FCA5A5;padding:15px 38px;border-radius:12px;font-weight:900;font-size:16px;cursor:pointer;font-family:'Noto Sans JP',sans-serif}
 
-.menu-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.menu-num {
-  background: #DC2626; color: white; width: 22px; height: 22px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0;
-}
+.partner-banner{background:#0F172A;border-radius:16px;padding:20px;margin-bottom:20px;color:#fff}
+.partner-banner-logo{display:inline-flex;align-items:center;margin-bottom:14px;overflow:hidden}
+.partner-banner-logo img{height:28px;width:auto;max-width:240px;display:block;object-fit:contain}
+.partner-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.partner-link{display:block;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:10px 12px;font-size:12px;color:#E2E8F0;text-decoration:none}
 
-.target-btns { display: flex; flex-wrap: wrap; gap: 8px; }
-.target-btn {
-  padding: 10px 18px; border-radius: 10px; font-weight: 600; font-size: 13px; cursor: pointer;
-  border: 1px solid #E2E8F0; background: white; color: #475569; font-family: 'Noto Sans JP', sans-serif;
-}
-.target-btn.active { border: 2px solid #DC2626; background: #FEF2F2; color: #DC2626; }
+.footer{background:#0F172A;color:#94A3B8;padding:24px;text-align:center;font-size:12px}
 
-.check-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
-.check-chip {
-  display: grid; grid-template-columns: 18px minmax(0, 1fr); align-items: start; column-gap: 10px;
-  border: 1px solid #DDE4EE; border-radius: 14px; background: #FAFBFF; padding: 12px 14px; font-size: 13px;
-  line-height: 1.4; color: #1F2937; cursor: pointer;
-}
-.check-chip input {
-  appearance: none; -webkit-appearance: none; width: 18px; height: 18px; margin: 1px 0 0;
-  border-radius: 6px; border: 1.5px solid #C7D2E2; background: white; position: relative;
-}
-.check-chip input:checked { border-color: #3182F6; background: #3182F6; }
-.check-chip input:checked::after {
-  content: ''; position: absolute; left: 5px; top: 1px; width: 5px; height: 10px;
-  border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg);
-}
-.check-chip.active { border-color: #3182F6; background: #EFF5FF; color: #1B4DB8; font-weight: 700; }
-.check-chip-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.future-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.future-item:last-child{margin-bottom:0}
+.future-dot{width:6px;height:6px;border-radius:50%;background:#DC2626;flex-shrink:0;margin-top:8px}
+.future-title{font-size:14px;font-weight:700}
+.future-desc{font-size:13px;color:#64748B}
 
-.agree-list {
-  background: #F8FAFC; border-radius: 10px; padding: 16px; font-size: 13px;
-  color: #334155; line-height: 1.9; margin-bottom: 16px;
-}
-.agree-list ol { margin: 0; padding-left: 18px; }
-.agree-check {
-  display: grid; grid-template-columns: 19px minmax(0, 1fr); align-items: start; column-gap: 10px;
-  cursor: pointer; padding: 13px 14px; border-radius: 12px; border: 1.5px solid #DDE4EE; background: #FBFCFF;
-}
-.agree-check.active { border-color: #3182F6; background: #EFF5FF; box-shadow: 0 2px 12px rgba(49,130,246,0.14); }
-.agree-check input {
-  appearance: none; -webkit-appearance: none; width: 19px; height: 19px; margin: 1px 0 0;
-  border-radius: 6px; border: 1.5px solid #C7D2E2; background: white; position: relative;
-}
-.agree-check input:checked { border-color: #3182F6; background: #3182F6; }
-.agree-check input:checked::after {
-  content: ''; position: absolute; left: 5px; top: 1px; width: 5px; height: 10px;
-  border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg);
-}
-.agree-check span { font-size: 14px; font-weight: 700; color: #344256; }
+.closing{text-align:center;font-size:14px;color:#334155;line-height:1.9;margin-bottom:24px;padding:0 8px}
+.closing .sig{margin-top:16px;font-weight:700}
 
-.submit-btn {
-  width: 100%; padding: 16px 32px; border-radius: 12px; font-size: 16px; font-weight: 800;
-  border: none; color: white; cursor: pointer; font-family: 'Noto Sans JP', sans-serif;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-}
-.submit-btn.ready { background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%); box-shadow: 0 4px 20px rgba(220,38,38,0.3); }
-.submit-btn.disabled { background: #CBD5E1; cursor: not-allowed; }
-.submit-hint { text-align: center; font-size: 12px; color: #94A3B8; margin-top: 10px; }
-.submit-error {
-  background: #FEF2F2; border: 1px solid #FECACA; border-radius: 10px; padding: 14px;
-  margin-bottom: 16px; font-size: 13px; color: #DC2626; text-align: center;
-}
+/* Form */
+.form-hero{background:linear-gradient(135deg,#0F172A 0%,#1E3A5F 100%);color:#fff;padding:36px 24px;text-align:center}
+.form-hero h2{font-size:clamp(18px,4vw,24px);font-weight:900;margin-bottom:8px}
+.form-hero p{font-size:13px;opacity:.8}
 
-.success-page {
-  min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%); color: white; padding: 24px; text-align: center;
-}
-.success-card {
-  background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); border-radius: 24px;
-  padding: 48px 32px; max-width: 440px; width: 100%; border: 1px solid rgba(255,255,255,0.15);
-}
-.success-icon {
-  width: 72px; height: 72px; background: linear-gradient(135deg, #059669, #10B981);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
-}
-.line-btn {
-  display: inline-flex; align-items: center; gap: 8px; background: #06C755; color: white; padding: 14px 28px;
-  border-radius: 10px; font-size: 14px; font-weight: 700; text-decoration: none;
-}
-.line-btn-big { width: 100%; justify-content: center; }
-.post-upload-status { margin-top: 12px; font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.85); min-height: 20px; }
-.post-upload-retry {
-  margin-top: 10px; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.35);
-  color: #fff; background: rgba(255,255,255,0.12); font-size: 12px; font-weight: 700; cursor: pointer;
-}
-.post-upload-retry.hidden { display: none; }
-.countdown { font-size: 12px; opacity: 0.7; margin-top: 8px; }
-.success-note { margin-top: 24px; font-size: 12px; opacity: 0.75; line-height: 1.7; }
+.form-section{background:#fff;border-radius:16px;padding:24px;margin-bottom:20px;border:1px solid #E2E8F0;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.form-section-header{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.form-section-num{background:#DC2626;color:#fff;width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;font-family:'Outfit',sans-serif}
+.form-section-header h3{font-size:16px;font-weight:800}
 
-.hidden { display: none !important; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top: 2px solid white; border-radius: 50%; animation: spin 0.8s linear infinite; }
+.form-field{margin-bottom:16px}
+.form-field label{display:block;font-size:14px;font-weight:700;margin-bottom:6px}
+.form-field .req{color:#DC2626}
+.form-input{width:100%;padding:10px 14px;border-radius:8px;border:1px solid #E2E8F0;font-size:14px;outline:none;font-family:'Noto Sans JP',sans-serif;background:#fff}
+.form-input:focus{border-color:#DC2626}
+.form-hint{font-size:11px;color:#94A3B8;margin-top:4px}
+.postal-row{display:flex;gap:8px;align-items:center}
+.postal-btn{background:#0F172A;color:#fff;border:none;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;white-space:nowrap}
+.postal-btn:disabled{background:#CBD5E1;cursor:not-allowed}
 
-@media (max-width: 640px) {
-  .nav { flex-wrap: wrap; gap: 10px; }
-  .nav-logo { width: 100%; }
-  .nav-logo-img { height: 24px; max-width: 180px; }
-  .nav-btn { width: 100%; text-align: center; }
-  .check-grid { grid-template-columns: 1fr; }
+.process-box{background:#fff;border-radius:14px;padding:20px;border:1px solid #E2E8F0;margin-bottom:24px}
+.process-box h3{font-size:15px;font-weight:800;margin-bottom:16px;text-align:center}
+.process-step{display:flex;gap:14px;align-items:flex-start}
+.process-step-line{display:flex;flex-direction:column;align-items:center}
+.process-num{width:28px;height:28px;border-radius:50%;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;font-family:'Outfit',sans-serif;flex-shrink:0}
+.process-line{width:2px;height:28px;background:#E2E8F0}
+.process-content{padding-bottom:12px}
+.process-title{font-size:14px;font-weight:700}
+.process-desc{font-size:12px;color:#64748B;line-height:1.6}
+
+.benefit-note{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:14px;margin-bottom:20px;font-size:13px;color:#334155;line-height:1.7}
+.benefit-row{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;margin-bottom:8px;border:1px solid #E2E8F0;background:#F8FAFC;flex-wrap:wrap}
+.benefit-row.active{background:#FEF2F2;border-color:#FECACA}
+.benefit-label{display:flex;align-items:center;gap:8px;cursor:pointer;flex:1 1 auto;min-width:160px}
+.benefit-label input{accent-color:#DC2626;width:18px;height:18px}
+.benefit-label span{font-size:14px;font-weight:600;color:#475569}
+.benefit-row.active .benefit-label span{color:#DC2626}
+.benefit-max{display:flex;align-items:center;gap:6px}
+.benefit-max span{font-size:12px;color:#94A3B8;white-space:nowrap}
+.benefit-max input{width:80px;padding:6px 8px;font-size:13px;text-align:right;border:1px solid #E2E8F0;border-radius:8px;outline:none;font-family:'Noto Sans JP',sans-serif}
+.benefit-tip{font-size:13px;color:#DC2626;font-weight:600;margin-top:12px;padding:10px 14px;background:#FEF2F2;border-radius:8px;line-height:1.6}
+.min-amount{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.min-amount span{font-size:14px;font-weight:600;white-space:nowrap}
+
+.schedule-toggle{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.radio-opt{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;border:2px solid #E2E8F0;background:#fff;color:#475569}
+.radio-opt.active{border-color:#DC2626;background:#FEF2F2;color:#DC2626}
+.radio-dot{width:18px;height:18px;border-radius:50%;border:2px solid #CBD5E1}
+.radio-opt.active .radio-dot{border:5px solid #DC2626}
+.time-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.time-select{padding:8px 12px;border:1px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:'Noto Sans JP',sans-serif;outline:none;background:#fff}
+.time-select-small{padding:6px 8px;font-size:13px;width:90px}
+.time-label{font-size:11px;color:#94A3B8}
+.break-check{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:8px}
+.break-check input{accent-color:#DC2626;width:16px;height:16px}
+.break-times{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-left:24px}
+
+.holiday-btns{display:flex;gap:6px;flex-wrap:wrap}
+.holiday-btn{padding:8px 14px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;border:1px solid #E2E8F0;background:#fff;color:#475569;font-family:'Noto Sans JP',sans-serif}
+.holiday-btn.active{border:2px solid #DC2626;background:#FEF2F2;color:#DC2626}
+.holiday-btn.nenkyu.active{border:2px solid #059669;background:#ECFDF5;color:#059669}
+
+.weekly-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:1px solid #E2E8F0;margin-bottom:8px;flex-wrap:wrap;background:#fff}
+.weekly-row.closed{background:#F8FAFC}
+.weekly-day{font-weight:700;font-size:14px;width:24px}
+.weekly-day.off{color:#94A3B8}
+.weekly-close-label{display:flex;align-items:center;gap:6px;font-size:12px;color:#94A3B8;cursor:pointer;margin-left:auto}
+
+.target-btns{display:flex;flex-wrap:wrap;gap:8px}
+.target-btn{padding:10px 18px;border-radius:10px;font-weight:600;font-size:13px;cursor:pointer;border:1px solid #E2E8F0;background:#fff;color:#475569;font-family:'Noto Sans JP',sans-serif}
+.target-btn.active{border:2px solid #DC2626;background:#FEF2F2;color:#DC2626}
+
+.check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.check-chip{display:grid;grid-template-columns:18px minmax(0,1fr);align-items:start;column-gap:10px;border:1px solid #DDE4EE;border-radius:14px;background:#FAFBFF;padding:12px 14px;font-size:13px;line-height:1.4;color:#1F2937;cursor:pointer}
+.check-chip input{appearance:none;-webkit-appearance:none;width:18px;height:18px;margin:1px 0 0;border-radius:6px;border:1.5px solid #C7D2E2;background:#fff;position:relative}
+.check-chip-text{display:block;min-width:0;padding-top:1px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.check-chip input:checked{border-color:#3182F6;background:#3182F6}
+.check-chip input:checked::after{content:'';position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.check-chip.active{border-color:#3182F6;background:#EFF5FF;color:#1B4DB8;font-weight:700}
+
+.menu-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.menu-num{background:#DC2626;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+
+.agree-list{background:#F8FAFC;border-radius:10px;padding:16px;font-size:13px;color:#334155;line-height:1.9;margin-bottom:16px}
+.agree-list ol{margin:0;padding-left:18px}
+.agree-check{display:grid;grid-template-columns:19px minmax(0,1fr);align-items:start;column-gap:10px;cursor:pointer;padding:13px 14px;border-radius:12px;border:1.5px solid #DDE4EE;background:#FBFCFF}
+.agree-check.active{border-color:#3182F6;background:#EFF5FF}
+.agree-check input{appearance:none;-webkit-appearance:none;width:19px;height:19px;margin:1px 0 0;border-radius:6px;border:1.5px solid #C7D2E2;background:#fff;position:relative}
+.agree-check input:checked{border-color:#3182F6;background:#3182F6}
+.agree-check input:checked::after{content:'';position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.agree-check span{font-size:14px;font-weight:700;color:#344256}
+.agree-check.active span{color:#1B4DB8}
+
+.submit-btn{width:100%;padding:16px 32px;border-radius:12px;font-size:16px;font-weight:800;border:none;color:#fff;cursor:pointer;font-family:'Noto Sans JP',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px}
+.submit-btn.ready{background:linear-gradient(135deg,#DC2626 0%,#B91C1C 100%);box-shadow:0 4px 20px rgba(220,38,38,.3)}
+.submit-btn.disabled{background:#CBD5E1;cursor:not-allowed}
+.submit-hint{text-align:center;font-size:12px;color:#94A3B8;margin-top:10px}
+.submit-error{background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:14px;margin-bottom:16px;font-size:13px;color:#DC2626;text-align:center}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top:2px solid #fff;border-radius:50%;animation:spin .8s linear infinite}
+
+.success-page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#0F172A 0%,#1E3A5F 100%);color:#fff;padding:24px;text-align:center}
+.success-card{background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border-radius:24px;padding:48px 32px;max-width:440px;width:100%;border:1px solid rgba(255,255,255,.15)}
+.success-icon{width:72px;height:72px;background:linear-gradient(135deg,#059669,#10B981);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+.success-card h2{font-size:22px;font-weight:900;margin-bottom:8px}
+.success-card p{font-size:14px;opacity:.8;line-height:1.7;margin-bottom:32px}
+.success-note{margin-top:24px;padding:14px 16px;background:rgba(255,255,255,.08);border-radius:10px;font-size:12px;color:rgba(255,255,255,.7);line-height:1.7}
+.countdown{font-size:12px;opacity:.65;margin-top:8px}
+.post-upload-status{margin-top:12px;font-size:12px;line-height:1.6;color:rgba(255,255,255,.85);min-height:20px}
+.post-upload-retry{margin-top:10px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.35);color:#fff;background:rgba(255,255,255,.12);font-size:12px;font-weight:700;cursor:pointer}
+.post-upload-retry.hidden{display:none}
+
+.hidden{display:none!important}
+
+@media (max-width:640px){
+  .nav{flex-wrap:wrap;gap:10px}
+  .nav-logo{width:100%}
+  .nav-logo-img{height:24px;max-width:180px}
+  .nav-btn{width:100%;text-align:center;padding:11px 14px;font-size:12px;border-radius:10px}
+  .check-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
+<!-- INFO PAGE -->
 <div id="infoPage">
   <div class="banner">【重要】Flying Pass 本格始動に伴うご案内とご協力のお願い</div>
 
@@ -268,27 +229,140 @@ a { color: inherit; }
   </nav>
 
   <section class="hero">
-    <h1>訪日韓国人向け「Flying Pass」<br>提携店舗情報 更新フォーム</h1>
-    <p>提携情報の更新にご協力お願いいたします。<br>送信後、画像はLINEにて店舗名と一緒にお送りください。</p>
+    <div style="max-width:720px;margin:0 auto">
+      <div class="hero-badge">既存提携パートナー様向けご案内</div>
+      <h1>訪日韓国人向け「Flying Pass」<br><span>本格始動</span>のご案内</h1>
+      <p>いつも大変お世話になっております。株式会社Flying Japanでございます。<br>平素より、弊社サービスへの多大なるご協力をいただき、<br>誠にありがとうございます。</p>
+    </div>
   </section>
 
   <div class="container">
-    <div class="info-card">
-      本フォームは提携店舗様向けの情報更新フォームです。<br>
-      基本情報・特典内容・営業時間・旅行者向け利便情報をご入力ください。<br>
-      画像はフォーム内ではなく、送信完了後にLINEで送付をお願いいたします。
+    <div class="info-intro">
+      この度、韓国人旅行者向け特典プラットフォーム「Flying Pass（フライングパス）」の本格的な運用開始に伴い、システムの運用方法および店舗スタッフ様への共有事項をご連絡させていただきます。<br>
+      ご多忙の折恐縮ですが、ご確認のほどよろしくお願い申し上げます。
+    </div>
+  </div>
+
+  <div class="container" style="padding-top:0">
+    <div class="info-section">
+      <div class="info-section-header">
+        <div class="section-number">1</div>
+        <h2>フライングパス使用概要</h2>
+      </div>
+      <div class="info-card">
+        <div class="info-item">
+          <div class="info-item-title"><div class="info-item-dot"></div>韓国人旅行者向け正式Webサイト公開</div>
+          <div class="info-item-body">公式サイト（<a href="https://flying-pass.com" target="_blank" style="color:#DC2626;font-weight:600">flying-pass.com</a>）にて、提携店舗リストや特典情報が公開されております。</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-title"><div class="info-item-dot"></div>旅行者への配布と送客強化</div>
+          <div class="info-item-body">現在「エディオンなんば」のトラベルセンターにて、<strong>1日平均200名以上</strong>の旅行者へ「ホワイトパス（実物カード）」を配布し、送客を強化しています。すでに貴店の情報は掲載されておりますので、お客様の来店時にはすぐに特典の提供が出来る準備をお願い致します。</div>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-value">62万+</div><div class="stat-label">コミュニティ会員</div></div>
+        <div class="stat-box"><div class="stat-value">1万人/月</div><div class="stat-label">センター来訪者</div></div>
+        <div class="stat-box"><div class="stat-value">200+/日</div><div class="stat-label">パス配布数</div></div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-section-header">
+        <div class="section-number">2</div>
+        <h2>会員ランクおよび特典利用ルール</h2>
+      </div>
+      <div class="info-card">
+        <p style="font-size:14px;line-height:1.8;margin-bottom:16px;color:#334155">
+          Flying Passは全<strong>6ランク</strong>（ホワイト / ブルー / シルバー / ゴールド / プラチナ / ブラック）で構成されています。<br>
+          「ホワイトパス」以外のランクのお客様が利用する場合には、以下の2点を提示していただくようご案内しております。
+        </p>
+        <div class="rank-warning">
+          <div class="rank-warning-title">お客様への確認事項（ホワイトパス以外）</div>
+          <div class="rank-boxes">
+            <div class="rank-box">1. 実物カード</div>
+            <div class="rank-box">2. スマートフォンのWEB画面<br><small>（「特典を使用する」ボタン）</small></div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:#64748B;line-height:1.7">※ お客様がスマホ画面で「特典を使用する」ボタンを押すと利用履歴が自動記録されます。</p>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-section-header">
+        <div class="section-number">3</div>
+        <h2>現場スタッフ様へのご共有願い</h2>
+      </div>
+      <div class="info-card">
+        <p style="font-size:14px;line-height:1.8;margin-bottom:16px;color:#334155">
+          韓国人のお客様が来店された際、スムーズなご案内ができるよう、以下の点を現場の皆様へご共有いただけますでしょうか。
+        </p>
+        <div class="staff-guide">
+          <div class="staff-check">✓</div>
+          <div><span style="font-weight:700">特典適用の確認：</span><span style="color:#475569">会計時に「実物カード」と「スマホ画面」の両方を確認してください。（※ホワイトパスの場合はカードのみ）</span></div>
+        </div>
+        <div class="staff-guide">
+          <div class="staff-check">✓</div>
+          <div><span style="font-weight:700">ステッカーの認識：</span><span style="color:#475569">お客様は店頭の「提携ステッカー」を目印に来店されます。</span></div>
+        </div>
+        <div class="staff-guide">
+          <div class="staff-check">✓</div>
+          <div><span style="font-weight:700">接客について：</span><span style="color:#475569">日本語でのコミュニケーションに不安を感じるお客様も多いため、画面とカードの提示だけで特典を適用していただけますと、お客様の安心感・満足度向上につながります。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-section-header">
+        <div class="section-number">4</div>
+        <h2>特典内容のご確認とLINE登録のお願い</h2>
+      </div>
+      <div class="info-card">
+        <div style="margin-bottom:20px">
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:8px">現在登録されている特典内容</h4>
+          <div style="background:#F1F5F9;padding:14px;border-radius:8px;font-size:13px;color:#475569;border-left:3px solid #DC2626">
+            例：○○をご注文の方にドリンク1杯無料
+          </div>
+        </div>
+        <div class="line-important">
+          <h4>【重要】LINE公式アカウント登録のお願い</h4>
+          <p>特典内容の変更や追加、集客のご相談、および今後の重要なお知らせやレポート送付は、すべて「LINE公式アカウント」にて一元管理いたします。お問い合わせもLINEが最もスムーズに対応可能ですので、以下より「友だち追加」をお願いいたします。</p>
+        </div>
+        <div style="text-align:center;padding:8px 0">
+          <p style="font-size:13px;font-weight:600;color:#475569;margin-bottom:12px">LINE公式アカウント（店舗様専用）</p>
+          <a href="https://line.me/R/ti/p/@864mbroc" target="_blank" class="line-btn">LINEで友だち追加する</a>
+        </div>
+      </div>
     </div>
 
     <div class="cta-box">
       <h3>提携情報の更新にご協力ください</h3>
-      <p>以下のフォームからご登録をお願いいたします。</p>
+      <p>新しいプラットフォームに掲載する店舗情報を<br>以下のフォームからご登録をお願いいたします。</p>
       <button class="cta-btn" onclick="showForm()">情報登録フォームへ進む →</button>
+    </div>
+
+    <div class="info-section">
+      <div class="info-section-header"><h2>今後のスケジュール</h2></div>
+      <div class="info-card">
+        <div class="future-item"><div class="future-dot"></div><div><div class="future-title">入店ガイド申請フォーム</div><div class="future-desc">LINEを通じて別途ご案内</div></div></div>
+        <div class="future-item"><div class="future-dot"></div><div><div class="future-title">レビュー施策のご提案</div><div class="future-desc">ブラック/プラチナ会員を対象としたレビュー投稿企画を予定</div></div></div>
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <h4 style="font-size:14px;font-weight:700;margin-bottom:12px">お問い合わせ</h4>
+      <div class="contact-row"><span class="contact-label">Email</span><span style="font-weight:600">pass@flyingjp.com</span></div>
+      <div class="contact-row"><span class="contact-label">LINE</span><a href="https://line.me/R/ti/p/@864mbroc" target="_blank" style="color:#06C755;font-weight:600">友だち追加はこちら</a></div>
+    </div>
+
+    <div class="closing">
+      <p>より多くの韓国人観光客が貴店を訪れ、売上に貢献できるよう、<br>運営一同尽力してまいります。<br>今後とも良きパートナーとして、末永いお付き合いをいただけますと幸いです。</p>
+      <p class="sig">株式会社Flying Japan一同</p>
     </div>
   </div>
 
   <footer class="footer">
     <div style="max-width:760px;margin:0 auto;">
-      <div class="partner-banner">
+      <div class="partner-banner" style="margin-bottom:14px;">
         <a class="partner-banner-logo" href="https://flyingjp.net/" target="_blank" rel="noopener noreferrer">
           <img src="https://lh3.googleusercontent.com/d/1uU92iQ5TQ3hmCd2k4C4bolzhTlDt9-Te=s3000" alt="FLYING JAPAN">
         </a>
@@ -306,6 +380,7 @@ a { color: inherit; }
   </footer>
 </div>
 
+<!-- FORM PAGE -->
 <div id="formPage" class="hidden">
   <nav class="nav">
     <button class="nav-back" onclick="showInfo()">← 戻る</button>
@@ -319,15 +394,33 @@ a { color: inherit; }
     <p>Flying Pass プラットフォームに掲載する情報をご入力ください</p>
   </div>
 
-  <div class="form-container">
+  <div style="max-width:640px;margin:0 auto;padding:24px 20px 0">
+    <div class="process-box">
+      <h3>提携手続きの流れ</h3>
+      <div class="process-step">
+        <div class="process-step-line"><div class="process-num">1</div><div class="process-line"></div></div>
+        <div class="process-content"><div class="process-title">情報登録フォームの提出</div><div class="process-desc">以下の必要事項にご記入・ご提出をお願いいたします。</div></div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-line"><div class="process-num">2</div><div class="process-line"></div></div>
+        <div class="process-content"><div class="process-title">内容の確認</div><div class="process-desc">ご提出いただいた情報をもとに、掲載内容を確認いたします。</div></div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-line"><div class="process-num">3</div></div>
+        <div class="process-content" style="padding-bottom:0"><div class="process-title">プラットフォームへの掲載</div><div class="process-desc">確認完了後、Flying Pass上の店舗情報を更新いたします。</div></div>
+      </div>
+    </div>
+  </div>
 
+  <div class="form-container">
+    <!-- 1 -->
     <div class="form-section">
       <div class="form-section-header"><div class="form-section-num">1</div><h3>店舗基本情報</h3></div>
 
-      <div class="form-field"><label>会社名（店舗名）<span class="req">*</span></label><input type="text" id="companyName" class="form-input" required></div>
-      <div class="form-field"><label>担当者名 <span class="req">*</span></label><input type="text" id="contactName" class="form-input" required></div>
-      <div class="form-field"><label>担当者連絡先（LINE 又は 電話番号）<span class="req">*</span></label><input type="text" id="contactInfo" class="form-input" required></div>
-      <div class="form-field"><label>メールアドレス <span class="req">*</span></label><input type="email" id="email" class="form-input" required></div>
+      <div class="form-field"><label>会社名（店舗名）<span class="req">*</span></label><input type="text" id="companyName" class="form-input" placeholder="例：焼肉○○ 難波本店" required></div>
+      <div class="form-field"><label>担当者名 <span class="req">*</span></label><input type="text" id="contactName" class="form-input" placeholder="例：田中太郎" required></div>
+      <div class="form-field"><label>担当者連絡先（LINE 又は 電話番号）<span class="req">*</span></label><input type="text" id="contactInfo" class="form-input" placeholder="例：06-1234-5678 又は LINE ID" required></div>
+      <div class="form-field"><label>メールアドレス <span class="req">*</span></label><input type="email" id="email" class="form-input" placeholder="例：info@example.com" required></div>
 
       <div class="form-field">
         <label>業種 <span class="req">*</span></label>
@@ -352,23 +445,24 @@ a { color: inherit; }
           <input type="text" id="postalCode" class="form-input" placeholder="例：5420076" inputmode="numeric" maxlength="8">
           <button type="button" class="postal-btn" id="postalSearchBtn" onclick="lookupPostalCode()">住所検索</button>
         </div>
-        <div class="form-hint">ハイフンなし7桁で入力（例: 5420076）</div>
+        <div class="form-hint">ハイフンなし7桁で入力してください（例: 5420076）</div>
       </div>
 
-      <div class="form-field"><label>地域 <span class="req">*</span></label><input type="text" id="area" class="form-input" required></div>
-      <div class="form-field"><label>住所 <span class="req">*</span></label><input type="text" id="address" class="form-input" required></div>
-      <div class="form-field"><label>GoogleマップのURL <span class="req">*</span></label><input type="url" id="googleMapsUrl" class="form-input" required></div>
+      <div class="form-field"><label>地域 <span class="req">*</span></label><input type="text" id="area" class="form-input" placeholder="例：大阪府大阪市中央区" required></div>
+      <div class="form-field"><label>住所 <span class="req">*</span></label><input type="text" id="address" class="form-input" placeholder="例：大阪市中央区難波1-1-1" required></div>
+      <div class="form-field"><label>GoogleマップのURL <span class="req">*</span></label><input type="url" id="googleMapsUrl" class="form-input" placeholder="https://maps.google.com/..." required></div>
     </div>
 
+    <!-- 2 -->
     <div class="form-section">
       <div class="form-section-header"><div class="form-section-num">2</div><h3>条件と特典の内容</h3></div>
-      <div class="benefit-note">「目に見える特典」の方が高い集客効果が期待できます。</div>
+      <div class="benefit-note">動画・画像でのPRを行うため、「目に見える特典」の方が高い集客効果が期待できます。</div>
 
       <div class="form-field">
         <label>利用条件 <span class="req">*</span></label>
         <div class="min-amount">
           <span>お会計</span>
-          <input type="number" id="minAmount" class="form-input" style="width:110px;text-align:right" required>
+          <input type="number" id="minAmount" class="form-input" placeholder="0000" style="width:110px;text-align:right" required>
           <span>円以上ご利用時</span>
         </div>
       </div>
@@ -380,27 +474,26 @@ a { color: inherit; }
 
       <div class="benefit-row" id="benefitDiscount" onclick="toggleBenefit('discount')">
         <label class="benefit-label" onclick="event.stopPropagation()"><input type="checkbox" id="chkDiscount" onchange="syncBenefit('discount')"><span>お会計から10%割引</span></label>
-        <div class="benefit-max hidden" id="maxDiscount"><span>最大</span><input type="number" id="maxDiscountAmt" class="form-input" onclick="event.stopPropagation()"><span>円まで</span></div>
+        <div class="benefit-max hidden" id="maxDiscount"><span>最大</span><input type="number" id="maxDiscountAmt" class="form-input" placeholder="0000" onclick="event.stopPropagation()"><span>円まで</span></div>
       </div>
       <div class="benefit-row" id="benefitDrink" onclick="toggleBenefit('drink')">
         <label class="benefit-label" onclick="event.stopPropagation()"><input type="checkbox" id="chkDrink" onchange="syncBenefit('drink')"><span>ドリンク1杯無料</span></label>
-        <div class="benefit-max hidden" id="maxDrink"><span>最大</span><input type="number" id="maxDrinkAmt" class="form-input" onclick="event.stopPropagation()"><span>円まで</span></div>
+        <div class="benefit-max hidden" id="maxDrink"><span>最大</span><input type="number" id="maxDrinkAmt" class="form-input" placeholder="0000" onclick="event.stopPropagation()"><span>円まで</span></div>
       </div>
       <div class="benefit-row" id="benefitSide" onclick="toggleBenefit('side')">
         <label class="benefit-label" onclick="event.stopPropagation()"><input type="checkbox" id="chkSide" onchange="syncBenefit('side')"><span>サイドメニュー1品無料</span></label>
-        <div class="benefit-max hidden" id="maxSide"><span>最大</span><input type="number" id="maxSideAmt" class="form-input" onclick="event.stopPropagation()"><span>円まで</span></div>
+        <div class="benefit-max hidden" id="maxSide"><span>最大</span><input type="number" id="maxSideAmt" class="form-input" placeholder="0000" onclick="event.stopPropagation()"><span>円まで</span></div>
       </div>
       <div class="benefit-row" id="benefitSizeUp" onclick="toggleBenefit('sizeUp')">
         <label class="benefit-label" onclick="event.stopPropagation()"><input type="checkbox" id="chkSizeUp" onchange="syncBenefit('sizeUp')"><span>サイズアップ1回無料</span></label>
-        <div class="benefit-max hidden" id="maxSizeUp"><span>最大</span><input type="number" id="maxSizeUpAmt" class="form-input" onclick="event.stopPropagation()"><span>円まで</span></div>
+        <div class="benefit-max hidden" id="maxSizeUp"><span>最大</span><input type="number" id="maxSizeUpAmt" class="form-input" placeholder="0000" onclick="event.stopPropagation()"><span>円まで</span></div>
       </div>
-
-      <div class="benefit-tip">特典は1つ選択してください。</div>
+      <div class="benefit-tip">特典内容は1つだけ選択してください。</div>
     </div>
 
+    <!-- 3 -->
     <div class="form-section">
       <div class="form-section-header"><div class="form-section-num">3</div><h3>営業時間</h3></div>
-
       <div class="schedule-toggle">
         <div class="radio-opt active" id="optDaily" onclick="setSchedule('daily')"><div class="radio-dot"></div>毎日同じ</div>
         <div class="radio-opt" id="optWeekly" onclick="setSchedule('weekly')"><div class="radio-dot"></div>曜日別</div>
@@ -412,37 +505,34 @@ a { color: inherit; }
           <span style="margin-top:16px;color:#94A3B8">〜</span>
           <div><div class="time-label">閉店</div><select id="dailyClose" class="time-select"></select></div>
         </div>
-
         <label class="break-check"><input type="checkbox" id="hasBreak" onchange="toggleBreak()">休憩時間あり</label>
         <div class="break-times hidden" id="breakTimes">
           <select id="breakOpen" class="time-select time-select-small"></select>
           <span style="color:#94A3B8">〜</span>
           <select id="breakClose" class="time-select time-select-small"></select>
         </div>
-
         <div style="margin-top:16px">
           <p style="font-size:13px;font-weight:700;margin-bottom:8px">定休日</p>
           <div class="holiday-btns" id="holidayBtns"></div>
         </div>
       </div>
-
       <div id="weeklySection" class="hidden"></div>
     </div>
 
+    <!-- 4 -->
     <div class="form-section">
       <div class="form-section-header"><div class="form-section-num">4</div><h3>店舗紹介</h3></div>
-
       <div class="form-field">
         <label>お店の特徴（一行紹介）<span class="req">*</span></label>
-        <input type="text" id="storeIntro" class="form-input" maxlength="80" required>
+        <input type="text" id="storeIntro" class="form-input" maxlength="80" placeholder="例：難波駅徒歩3分、地元の人も並ぶ焼肉の名店" required>
         <div class="form-hint">位置 + コンセプト + 魅力ポイントを一文で</div>
       </div>
 
       <div class="form-field">
         <label>一押しメニュー（1〜3つ）</label>
-        <div class="menu-row"><div class="menu-num">1</div><input type="text" id="menu1" class="form-input"></div>
-        <div class="menu-row"><div class="menu-num">2</div><input type="text" id="menu2" class="form-input"></div>
-        <div class="menu-row"><div class="menu-num">3</div><input type="text" id="menu3" class="form-input"></div>
+        <div class="menu-row"><div class="menu-num">1</div><input type="text" id="menu1" class="form-input" placeholder="メニュー名"></div>
+        <div class="menu-row"><div class="menu-num">2</div><input type="text" id="menu2" class="form-input" placeholder="メニュー名（任意）"></div>
+        <div class="menu-row"><div class="menu-num">3</div><input type="text" id="menu3" class="form-input" placeholder="メニュー名（任意）"></div>
       </div>
 
       <div class="form-field">
@@ -465,6 +555,7 @@ a { color: inherit; }
       </div>
     </div>
 
+    <!-- 5 (6->5 수정) -->
     <div class="form-section">
       <div class="form-section-header"><div class="form-section-num">5</div><h3>旅行者向け利便情報</h3></div>
 
@@ -503,9 +594,10 @@ a { color: inherit; }
       <h3 style="font-size:15px;font-weight:800;margin-bottom:14px">同意事項</h3>
       <div class="agree-list">
         <ol>
-          <li>登録フォーム提出後、確認完了次第、会員向けページに掲載されます。</li>
-          <li>提携内容は店舗スタッフの皆様へ必ず共有してください。</li>
-          <li>会員様が特典を受けられないことがないよう、確実な対応をお願いします。</li>
+          <li>登録フォームを提出していただくと、確認完了後、会員様向けページに特典と条件に関する内容が掲載されます。</li>
+          <li>提携にあたり、すべての従業員・スタッフの方に提携内容を必ず共有してください。</li>
+          <li>会員様が特典を受けられないことがないよう、確実な対応の徹底をお願いします。</li>
+          <li>お客様は注文前にフライングパスを提示します。</li>
           <li>フライングパス1枚につき、特典は1つご提供ください。</li>
         </ol>
       </div>
@@ -521,19 +613,20 @@ a { color: inherit; }
   </div>
 </div>
 
+<!-- SUCCESS -->
 <div id="successPage" class="hidden">
   <div class="success-page">
     <div class="success-card">
       <div class="success-icon">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <h2 style="font-size:22px;font-weight:900;margin-bottom:8px">ご登録ありがとうございます</h2>
-      <p style="font-size:14px;opacity:0.85;line-height:1.7;margin-bottom:24px">登録内容を確認次第、ご連絡いたします。</p>
+      <h2>ご登録ありがとうございます</h2>
+      <p>登録内容を確認次第、ご連絡いたします。<br>続いて、<strong>LINEビジネスチャネル</strong>を<br>友だち追加してください。</p>
       <a href="https://line.me/R/ti/p/@864mbroc" target="_blank" class="line-btn line-btn-big">LINEで友だち追加する</a>
       <div id="countdown" class="countdown"></div>
       <div id="postUploadStatus" class="post-upload-status"></div>
       <button id="retryUploadBtn" class="post-upload-retry hidden" onclick="retryFailedUploads()">LINEを開く</button>
-      <div class="success-note">画像はLINEで「店舗名」を先頭に記載して送信してください。</div>
+      <div class="success-note">画像はLINEで「店舗名」を最初に記載して送信してください。</div>
     </div>
   </div>
 </div>
@@ -556,11 +649,12 @@ var GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwaiDpnuDHVtv2IRj
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({ action: action, payload: payload }),
       redirect: 'follow'
-    }).then(function(res) {
+    }).then(function(res){
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.text();
-    }).then(function(text) {
-      try { return JSON.parse(text); } catch (e) { throw new Error('API応答エラー: ' + text.slice(0, 120)); }
+    }).then(function(text){
+      try { return JSON.parse(text); }
+      catch (e) { throw new Error('API parse error: ' + text.slice(0,120)); }
     });
   }
 
@@ -568,25 +662,23 @@ var GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwaiDpnuDHVtv2IRj
     var onSuccess = function(){};
     var onFailure = function(){};
     return {
-      withSuccessHandler: function(fn) { onSuccess = fn || function(){}; return this; },
-      withFailureHandler: function(fn) { onFailure = fn || function(){}; return this; },
-      submitForm: function(payload) { callApi('submitForm', payload).then(onSuccess).catch(onFailure); },
-      uploadSubmissionImage: function(payload) { callApi('uploadSubmissionImage', payload).then(onSuccess).catch(onFailure); }
+      withSuccessHandler: function(fn){ onSuccess = fn || function(){}; return this; },
+      withFailureHandler: function(fn){ onFailure = fn || function(){}; return this; },
+      submitForm: function(payload){ callApi('submitForm', payload).then(onSuccess).catch(onFailure); },
+      uploadSubmissionImage: function(payload){ callApi('uploadSubmissionImage', payload).then(onSuccess).catch(onFailure); }
     };
   }
 
-  Object.defineProperty(google.script, 'run', { get: function() { return createRunner(); } });
+  Object.defineProperty(google.script, 'run', { get: function(){ return createRunner(); } });
 })();
 
-// ====== STATE ======
+// ===== STATE =====
 var scheduleType = 'daily';
 var holidays = [];
 var targets = [];
 var agreed = false;
 var submitting = false;
 var submitWatchdogTimer = null;
-var postSubmitUploading = false;
-var postUploadSession = null;
 
 var LINE_URL = 'https://line.me/R/ti/p/@864mbroc';
 var DAYS = ['月','火','水','木','金','土','日'];
@@ -596,7 +688,7 @@ var TARGET_OPTIONS = [
   {id:'drinking',label:'飲み会'},{id:'dinner',label:'ディナー'},
   {id:'lunch',label:'ランチ'},{id:'dessert',label:'デザート'}
 ];
-var BENEFIT_TYPES = ['discount', 'drink', 'side', 'sizeUp'];
+var BENEFIT_TYPES = ['discount','drink','side','sizeUp'];
 var DRAFT_KEY = 'flying_pass_partner_form_draft_v1';
 var autosaveBound = false;
 var saveTimer = null;
@@ -606,7 +698,7 @@ var UTILITY_CHECK_IDS = [
   'utilAmenityWifi','utilAmenitySmoking','utilAmenityNoSmoking','utilAmenityChildChair','utilAmenityOutlet'
 ];
 
-// ====== INIT ======
+// ===== INIT =====
 window.onload = function() {
   buildTimeOptions();
   buildHolidayBtns();
@@ -617,7 +709,7 @@ window.onload = function() {
   bindAutosave();
 };
 
-// ====== PAGE NAVIGATION ======
+// ===== NAV =====
 function showForm() {
   document.getElementById('infoPage').classList.add('hidden');
   document.getElementById('formPage').classList.remove('hidden');
@@ -638,7 +730,7 @@ function showSuccess() {
   el.textContent = count + '秒後に自動でLINE画面が開きます...';
   var timer = setInterval(function(){
     count--;
-    if(count <= 0){
+    if (count <= 0) {
       clearInterval(timer);
       el.textContent = '';
       window.open(LINE_URL, '_blank');
@@ -654,7 +746,6 @@ function setPostUploadStatus(text, isError) {
   el.textContent = text || '';
   el.style.color = isError ? '#FCA5A5' : 'rgba(255,255,255,0.85)';
 }
-
 function setRetryUploadButton(show, label) {
   var btn = document.getElementById('retryUploadBtn');
   if (!btn) return;
@@ -662,24 +753,23 @@ function setRetryUploadButton(show, label) {
   btn.className = 'post-upload-retry' + (show ? '' : ' hidden');
 }
 
-// ====== TIME OPTIONS ======
+// ===== TIME =====
 function buildTimeOptions() {
   var opts = '<option value="">--:--</option>';
   for (var h=6; h<=26; h++) {
     for (var m=0; m<60; m+=30) {
       if (h===26 && m>0) break;
-      var hh = String(h).padStart(2, '0');
-      var mm = String(m).padStart(2, '0');
+      var hh = String(h).padStart(2,'0');
+      var mm = String(m).padStart(2,'0');
       opts += '<option value="'+hh+':'+mm+'">'+hh+':'+mm+'</option>';
     }
   }
   ['dailyOpen','dailyClose','breakOpen','breakClose'].forEach(function(id){
-    var el = document.getElementById(id);
-    if (el) el.innerHTML = opts;
+    document.getElementById(id).innerHTML = opts;
   });
 }
 
-// ====== SCHEDULE ======
+// ===== SCHEDULE =====
 function setSchedule(type) {
   scheduleType = type;
   document.getElementById('optDaily').className = 'radio-opt' + (type==='daily' ? ' active' : '');
@@ -694,7 +784,7 @@ function toggleBreak() {
   queueSaveDraft();
 }
 
-// ====== HOLIDAY ======
+// ===== HOLIDAY =====
 function buildHolidayBtns() {
   var html = '';
   DAYS.forEach(function(d){ html += '<button class="holiday-btn" onclick="toggleHoliday(\''+d+'\')">'+d+'</button>'; });
@@ -707,8 +797,7 @@ function toggleHoliday(day) {
   } else {
     holidays = holidays.filter(function(d){ return d !== '年中無休'; });
     var idx = holidays.indexOf(day);
-    if (idx >= 0) holidays.splice(idx,1);
-    else holidays.push(day);
+    if (idx >= 0) holidays.splice(idx,1); else holidays.push(day);
   }
   updateHolidayBtns();
   queueSaveDraft();
@@ -723,18 +812,17 @@ function updateHolidayBtns() {
   }
 }
 
-// ====== WEEKLY ======
+// ===== WEEKLY =====
 function buildWeeklySection() {
   var opts = '<option value="">--:--</option>';
   for (var h=6; h<=26; h++) {
     for (var m=0; m<60; m+=30) {
       if (h===26 && m>0) break;
-      var hh = String(h).padStart(2, '0');
-      var mm = String(m).padStart(2, '0');
+      var hh = String(h).padStart(2,'0');
+      var mm = String(m).padStart(2,'0');
       opts += '<option value="'+hh+':'+mm+'">'+hh+':'+mm+'</option>';
     }
   }
-
   var html = '';
   DAYS.forEach(function(d){
     html += '<div class="weekly-row" id="weekRow_'+d+'">';
@@ -754,19 +842,19 @@ function toggleWeekDay(day) {
   document.getElementById('wOpen_'+day).style.display = closed ? 'none' : '';
   document.getElementById('wClose_'+day).style.display = closed ? 'none' : '';
   row.querySelectorAll('span')[0].style.display = closed ? 'none' : '';
-  var dayEl = row.querySelector('.weekly-day');
-  dayEl.className = 'weekly-day' + (closed ? ' off' : '');
+  row.querySelector('.weekly-day').className = 'weekly-day' + (closed ? ' off' : '');
   queueSaveDraft();
 }
 
-// ====== BENEFITS ======
-function toggleBenefit(type) { selectSingleBenefit(type); }
-function syncBenefit(type) { selectSingleBenefit(type); }
-function updateBenefitRow(type, isChecked) {
+// ===== BENEFIT =====
+function toggleBenefit(type){ selectSingleBenefit(type); }
+function syncBenefit(type){ selectSingleBenefit(type); }
+
+function updateBenefitRow(type, checked) {
   var map = {discount:'Discount', drink:'Drink', side:'Side', sizeUp:'SizeUp'};
-  var row = document.getElementById('benefit'+map[type]);
-  var maxDiv = document.getElementById('max'+map[type]);
-  if (isChecked) {
+  var row = document.getElementById('benefit' + map[type]);
+  var maxDiv = document.getElementById('max' + map[type]);
+  if (checked) {
     row.className = 'benefit-row active';
     maxDiv.className = 'benefit-max';
   } else {
@@ -779,7 +867,6 @@ function selectSingleBenefit(type) {
   var map = {discount:'Discount', drink:'Drink', side:'Side', sizeUp:'SizeUp'};
   BENEFIT_TYPES.forEach(function(t){
     var chk = document.getElementById('chk' + map[t]);
-    if (!chk) return;
     chk.checked = (t === type);
     updateBenefitRow(t, chk.checked);
   });
@@ -788,7 +875,7 @@ function getSelectedBenefitCount() {
   var map = {discount:'Discount', drink:'Drink', side:'Side', sizeUp:'SizeUp'};
   return BENEFIT_TYPES.reduce(function(acc, t){
     var chk = document.getElementById('chk' + map[t]);
-    return acc + ((chk && chk.checked) ? 1 : 0);
+    return acc + (chk && chk.checked ? 1 : 0);
   }, 0);
 }
 function normalizeBenefitSelectionFromDraft() {
@@ -797,14 +884,17 @@ function normalizeBenefitSelectionFromDraft() {
     var chk = document.getElementById('chk' + map[t]);
     return !!(chk && chk.checked);
   });
-  if (selected.length > 1) { selectSingleBenefit(selected[0]); return; }
+  if (selected.length > 1) {
+    selectSingleBenefit(selected[0]);
+    return;
+  }
   BENEFIT_TYPES.forEach(function(t){
     var chk = document.getElementById('chk' + map[t]);
     updateBenefitRow(t, !!(chk && chk.checked));
   });
 }
 
-// ====== TARGET ======
+// ===== TARGET =====
 function buildTargetBtns() {
   var html = '';
   TARGET_OPTIONS.forEach(function(t){
@@ -814,8 +904,7 @@ function buildTargetBtns() {
 }
 function toggleTarget(id) {
   var idx = targets.indexOf(id);
-  if (idx >= 0) targets.splice(idx,1);
-  else targets.push(id);
+  if (idx >= 0) targets.splice(idx,1); else targets.push(id);
   TARGET_OPTIONS.forEach(function(t){
     var el = document.getElementById('target_'+t.id);
     el.className = 'target-btn' + (targets.indexOf(t.id)>=0 ? ' active' : '');
@@ -823,13 +912,11 @@ function toggleTarget(id) {
   queueSaveDraft();
 }
 
-// ====== POSTAL ======
+// ===== POSTAL =====
 function lookupPostalCode() {
   var postalEl = document.getElementById('postalCode');
   var btn = document.getElementById('postalSearchBtn');
-  var raw = (postalEl.value || '').trim();
-  var code = raw.replace(/\D/g, '');
-
+  var code = String(postalEl.value || '').replace(/\D/g, '');
   if (code.length !== 7) {
     alert('郵便番号は7桁で入力してください。');
     postalEl.focus();
@@ -843,35 +930,36 @@ function lookupPostalCode() {
     .then(function(res){ return res.json(); })
     .then(function(data){
       if (!data || data.status !== 200 || !data.results || !data.results.length) throw new Error('not found');
-      var result = data.results[0];
-      var areaText = (result.address1 || '') + (result.address2 || '');
+      var r = data.results[0];
+      var areaText = (r.address1 || '') + (r.address2 || '');
       var areaEl = document.getElementById('area');
       if (!areaEl.value.trim()) areaEl.value = areaText;
       postalEl.value = code;
       queueSaveDraft();
     })
     .catch(function(){ alert('住所検索に失敗しました。郵便番号をご確認ください。'); })
-    .finally(function(){ btn.disabled = false; btn.textContent = '住所検索'; });
+    .finally(function(){
+      btn.disabled = false;
+      btn.textContent = '住所検索';
+    });
 }
 
-// ====== AGREEMENT ======
+// ===== AGREE =====
 function toggleAgree() {
   var chk = document.getElementById('agreeBox');
   chk.checked = !chk.checked;
   syncAgree();
 }
 function syncAgree() {
-  var chk = document.getElementById('agreeBox');
-  agreed = chk.checked;
-  var el = document.getElementById('agreeCheck');
-  el.className = 'agree-check' + (agreed ? ' active' : '');
+  agreed = document.getElementById('agreeBox').checked;
+  document.getElementById('agreeCheck').className = 'agree-check' + (agreed ? ' active' : '');
   var btn = document.getElementById('submitBtn');
   btn.disabled = !agreed;
   btn.className = 'submit-btn ' + (agreed ? 'ready' : 'disabled');
   queueSaveDraft();
 }
 
-// ====== DRAFT ======
+// ===== DRAFT =====
 function bindAutosave() {
   if (autosaveBound) return;
   autosaveBound = true;
@@ -893,7 +981,7 @@ function getFieldValue(id) {
 }
 function setFieldValue(id, value) {
   var el = document.getElementById(id);
-  if (el && typeof value !== 'undefined' && value !== null) el.value = value;
+  if (el && value !== undefined && value !== null) el.value = value;
 }
 function collectDraft() {
   var weekly = {};
@@ -956,10 +1044,7 @@ function collectDraft() {
   };
 }
 function saveDraft() {
-  try {
-    var data = collectDraft();
-    localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
-  } catch (e) {}
+  try { localStorage.setItem(DRAFT_KEY, JSON.stringify(collectDraft())); } catch (e) {}
 }
 function restoreDraft() {
   try {
@@ -973,11 +1058,10 @@ function restoreDraft() {
       setFieldValue(key, draft.fields[key]);
     });
 
-    var hasBreakEl = document.getElementById('hasBreak');
-    if (hasBreakEl) hasBreakEl.checked = !!draft.fields.hasBreak;
+    if (document.getElementById('hasBreak')) document.getElementById('hasBreak').checked = !!draft.fields.hasBreak;
     toggleBreak();
 
-    ['Discount', 'Drink', 'Side', 'SizeUp'].forEach(function(name){
+    ['Discount','Drink','Side','SizeUp'].forEach(function(name){
       var el = document.getElementById('chk' + name);
       if (el) el.checked = !!draft.fields['chk' + name];
     });
@@ -991,8 +1075,7 @@ function restoreDraft() {
         var item = draft.weekly[d] || {};
         setFieldValue('wOpen_' + d, item.open || '');
         setFieldValue('wClose_' + d, item.close || '');
-        var closedEl = document.getElementById('wClosed_' + d);
-        if (closedEl) closedEl.checked = !!item.closed;
+        if (document.getElementById('wClosed_' + d)) document.getElementById('wClosed_' + d).checked = !!item.closed;
         toggleWeekDay(d);
       });
     }
@@ -1006,8 +1089,7 @@ function restoreDraft() {
       if (el) el.className = 'target-btn' + (targets.indexOf(t.id)>=0 ? ' active' : '');
     });
 
-    var agreeEl = document.getElementById('agreeBox');
-    if (agreeEl) agreeEl.checked = !!draft.agreed;
+    if (document.getElementById('agreeBox')) document.getElementById('agreeBox').checked = !!draft.agreed;
     UTILITY_CHECK_IDS.forEach(function(id){
       var el = document.getElementById(id);
       if (el) el.checked = !!draft.fields[id];
@@ -1020,7 +1102,7 @@ function clearDraft() {
   try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
 }
 
-// ====== BUILD FORM DATA ======
+// ===== UTIL =====
 function getBusinessHours() {
   if (scheduleType === 'daily') {
     var open = document.getElementById('dailyOpen').value || '--:--';
@@ -1048,13 +1130,31 @@ function getBusinessHours() {
 function getHolidays() {
   if (scheduleType === 'weekly') {
     var closed = [];
-    DAYS.forEach(function(d){ if (document.getElementById('wClosed_'+d).checked) closed.push(d); });
+    DAYS.forEach(function(d){
+      if (document.getElementById('wClosed_'+d).checked) closed.push(d);
+    });
     return closed.length > 0 ? closed.join('・') : 'なし';
   }
   return holidays.length > 0 ? holidays.join('・') : '未選択';
 }
+function collectCheckedLabels(items) {
+  return items.filter(function(item){
+    var el = document.getElementById(item.id);
+    return !!(el && el.checked);
+  }).map(function(item){
+    return item.label;
+  }).join(' / ');
+}
+function syncCheckChipStates() {
+  var chips = document.querySelectorAll('.check-chip');
+  for (var i=0; i<chips.length; i++) {
+    var chk = chips[i].querySelector('input[type="checkbox"]');
+    if (!chk) continue;
+    chips[i].className = 'check-chip' + (chk.checked ? ' active' : '');
+  }
+}
 
-// ====== SUBMIT ======
+// ===== SUBMIT =====
 function handleSubmit() {
   if (!agreed || submitting) return;
 
@@ -1174,23 +1274,8 @@ function handleSubmit() {
     .submitForm(formData);
 }
 
-function retryFailedUploads() { window.open(LINE_URL, '_blank'); }
-
-function syncCheckChipStates() {
-  var chips = document.querySelectorAll('.check-chip');
-  for (var i=0; i<chips.length; i++) {
-    var chk = chips[i].querySelector('input[type="checkbox"]');
-    if (!chk) continue;
-    chips[i].className = 'check-chip' + (chk.checked ? ' active' : '');
-  }
-}
-function collectCheckedLabels(items) {
-  return items.filter(function(item){
-    var el = document.getElementById(item.id);
-    return !!(el && el.checked);
-  }).map(function(item){
-    return item.label;
-  }).join(' / ');
+function retryFailedUploads() {
+  window.open(LINE_URL, '_blank');
 }
 </script>
 </body>
