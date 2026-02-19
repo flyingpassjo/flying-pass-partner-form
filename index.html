@@ -152,6 +152,7 @@ a{color:inherit}
 .holiday-btn{padding:8px 14px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;border:1px solid #E2E8F0;background:#fff;color:#475569;font-family:'Noto Sans JP',sans-serif}
 .holiday-btn.active{border:2px solid #DC2626;background:#FEF2F2;color:#DC2626}
 .holiday-btn.nenkyu.active{border:2px solid #059669;background:#ECFDF5;color:#059669}
+.holiday-btn { ...; -webkit-tap-highlight-color: transparent; }
 
 .weekly-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:1px solid #E2E8F0;margin-bottom:8px;flex-wrap:wrap;background:#fff}
 .weekly-row.closed{background:#F8FAFC}
@@ -786,31 +787,52 @@ function toggleBreak() {
 
 // ===== HOLIDAY =====
 function buildHolidayBtns() {
+  var container = document.getElementById('holidayBtns');
+  if (!container) return;
+
   var html = '';
-  DAYS.forEach(function(d){ html += '<button class="holiday-btn" onclick="toggleHoliday(\''+d+'\')">'+d+'</button>'; });
-  html += '<button class="holiday-btn nenkyu" onclick="toggleHoliday(\'年中無休\')">年中無休</button>';
-  document.getElementById('holidayBtns').innerHTML = html;
+  DAYS.forEach(function(d){
+    html += '<button type="button" class="holiday-btn" data-day="' + d + '">' + d + '</button>';
+  });
+  html += '<button type="button" class="holiday-btn nenkyu" data-day="年中無休">年中無休</button>';
+  container.innerHTML = html;
+
+  container.onclick = function(e) {
+    var btn = e.target.closest('button[data-day]');
+    if (!btn) return;
+    e.preventDefault();
+    toggleHoliday(btn.getAttribute('data-day'));
+  };
+
+  updateHolidayBtns();
 }
+
 function toggleHoliday(day) {
   if (day === '年中無休') {
     holidays = ['年中無休'];
   } else {
     holidays = holidays.filter(function(d){ return d !== '年中無休'; });
     var idx = holidays.indexOf(day);
-    if (idx >= 0) holidays.splice(idx,1); else holidays.push(day);
+    if (idx >= 0) holidays.splice(idx,1);
+    else holidays.push(day);
   }
   updateHolidayBtns();
   queueSaveDraft();
 }
+
 function updateHolidayBtns() {
-  var btns = document.getElementById('holidayBtns').children;
-  for (var i=0; i<btns.length; i++) {
-    var text = btns[i].textContent;
-    var isNenkyu = text === '年中無休';
-    var isActive = holidays.indexOf(text) >= 0;
+  var container = document.getElementById('holidayBtns');
+  if (!container) return;
+
+  var btns = container.querySelectorAll('button[data-day]');
+  for (var i = 0; i < btns.length; i++) {
+    var day = btns[i].getAttribute('data-day');
+    var isNenkyu = day === '年中無休';
+    var isActive = holidays.indexOf(day) >= 0;
     btns[i].className = 'holiday-btn' + (isNenkyu ? ' nenkyu' : '') + (isActive ? ' active' : '');
   }
 }
+
 
 // ===== WEEKLY =====
 function buildWeeklySection() {
